@@ -1,0 +1,23 @@
+# Môi trường ảo (Bắt buộc)
+pcb_env/
+venv/
+env/
+pyvenv.cfg
+
+# Python bytecode (File rác khi chạy code)
+__pycache__/
+*.py[cod]
+
+# VS Code & Editor
+.vscode/
+.idea/
+
+# Dữ liệu & Model AI (Tránh file nặng)
+*.pt
+*.onnx
+runs/
+datasets/
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
