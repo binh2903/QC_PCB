@@ -17,6 +17,14 @@ This project develops an automated Quality Control (QC) system using Artificial 
 | **Min. Detection Size** | mm | 2.5 x 2.5 |
 | **Max. PCB Workpiece Size** | mm | 80 x 80 |
 | **System Footprint** | mm | 1000 x 1000 x 1000 |
+<div align="left">
+  <div style="display: inline-block; text-align: center;">
+    <img src="images/images_readme/sample1.jpg" alt="Annotation" width="300px">
+    <img src="images/images_readme/sample2.jpg" alt="Annotation" width="300px">
+    <p>Annotation</p>
+  </div>
+</div>
+
 
 ## 4. Project Constraints
 *   **Budget:** 20,000,000 VNĐ.

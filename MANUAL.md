@@ -61,3 +61,14 @@ pip install -r requirements-dev.txt
 
 ---
 **Warning:** Do not upload the \`pcb_env/\` folder to GitHub. Ensure it is listed in your \`.gitignore\` file.
+
+
+/// phan moi them vao 
+py -m pip install pyqt6-tools
+py -m pip install pyqt6
+C:\Users\NguyenDucBinh\AppData\Local\Programs\Python\Python310\Lib\site-packages\pyqt6_plugins\Qt\bin\designer.exe
+
+py -m PyQt6.uic.pyuic -o ui_main.py ui_main.ui
+.\pcb_env\Scripts\python.exe main.py
+.\pcb_env\Scripts\python.exe -m PyQt6.uic.pyuic -o ui_main.py ui_main.ui
+.\pcb_env\Scripts\python.exe -m pip install watchdog
