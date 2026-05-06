@@ -72,3 +72,4 @@ py -m PyQt6.uic.pyuic -o ui_main.py ui_main.ui
 .\pcb_env\Scripts\python.exe main.py
 .\pcb_env\Scripts\python.exe -m PyQt6.uic.pyuic -o ui_main.py ui_main.ui
 .\pcb_env\Scripts\python.exe -m pip install watchdog
+

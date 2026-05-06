@@ -3,6 +3,11 @@ pcb_env/
 venv/
 env/
 pyvenv.cfg
+# Development folder
+Development/*
+!Development/Samples/Python/
+# Development/Samples/
+
 
 # Python bytecode (File rác khi chạy code)
 __pycache__/

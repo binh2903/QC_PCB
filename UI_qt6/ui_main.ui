@@ -6,731 +6,1106 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1289</width>
-    <height>800</height>
+    <width>1366</width>
+    <height>876</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>QC_PCB INSPECTION SYSTEM</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">/* GLOBAL DARK THEME */
+* {
+    font-family: &quot;Segoe UI&quot;, Roboto, Arial, sans-serif;
+}
+QMainWindow {
+    background-color: #121212;
+}
+QWidget#centralwidget {
+    background-color: #121212;
+}
+QLabel {
+    color: #E0E0E0;
+}
+/* PANELS &amp; TITLE BAR */
+QFrame#title_bar {
+    background-color: #1A1A2E;
+    border-bottom: 2px solid #282846;
+}
+QFrame#frame_settings_panel {
+    background-color: #1A1A2E;
+    border-radius: 8px;
+    border: 1px solid #333333;
+}
+QGroupBox {
+    background-color: #1E1E1E;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    margin-top: 12px;
+    padding-top: 15px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 10px;
+    color: #00E676;
+    font-weight: bold;
+    font-size: 13px;
+}
+/* NAVIGATION BUTTONS */
+QPushButton#btn_nav_inspection {
+    background-color: #00E676;
+    color: #121212;
+    border-radius: 6px;
+    font-weight: bold;
+    padding: 8px 16px;
+}
+QPushButton#btn_nav_settings {
+    background-color: #333333;
+    color: #AAAAAA;
+    border: 1px solid #555555;
+    border-radius: 6px;
+    font-weight: bold;
+    padding: 8px 16px;
+}
+QPushButton#btn_nav_settings:hover { background-color: #444444; color: white; }
+
+/* GENERAL BUTTONS */
+QPushButton {
+    background-color: #2D2D2D;
+    color: white;
+    border: 1px solid #444444;
+    border-radius: 4px;
+    padding: 6px;
+}
+QPushButton:hover { background-color: #3D3D3D; border-color: #00E676; }
+QPushButton:pressed { background-color: #1E1E1E; }
+
+/* ACTION BUTTONS (INSPECTION PAGE) */
+QPushButton#btn_start { background-color: #00C853; border: none; font-size: 16px; font-weight: bold; color: white; border-radius: 8px;}
+QPushButton#btn_start:hover { background-color: #00E676; }
+QPushButton#btn_reset { background-color: #FDD835; border: none; font-size: 16px; font-weight: bold; color: #121212; border-radius: 8px;}
+QPushButton#btn_reset:hover { background-color: #FFEE58; }
+QPushButton#btn_stop { background-color: #E53935; border: none; font-size: 16px; font-weight: bold; color: white; border-radius: 8px;}
+QPushButton#btn_stop:hover { background-color: #EF5350; }
+
+QPushButton#btn_add_log { background-color: #00C853; border:none; font-weight:bold; }
+QPushButton#btn_delete_log { background-color: #E53935; border:none; font-weight:bold; }
+
+/* INPUTS &amp; CONTROLS (SETTINGS PAGE) */
+QComboBox {
+    background-color: #222222;
+    color: white;
+    border: 1px solid #444444;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 13px;
+}
+QComboBox::drop-down { border: none; }
+QLineEdit {
+    background-color: #121212;
+    color: #00E676;
+    border: 1px solid #444444;
+    border-radius: 4px;
+    padding: 4px;
+}
+QRadioButton, QCheckBox {
+    color: #E0E0E0;
+    spacing: 8px;
+}
+QRadioButton::indicator, QCheckBox::indicator {
+    width: 16px; height: 16px;
+}
+
+/* LCD NUMBERS */
+QLCDNumber {
+    background-color: #0A0A0A;
+    color: #00E676;
+    border: 1px solid #333333;
+    border-radius: 4px;
+}
+/* TABLE WIDGET */
+QTableWidget {
+    background-color: #181818;
+    alternate-background-color: #222222;
+    color: #E0E0E0;
+    gridline-color: #333333;
+    border: 1px solid #333333;
+    border-radius: 4px;
+}
+QHeaderView::section {
+    background-color: #1A1A2E;
+    color: white;
+    font-weight: bold;
+    padding: 4px;
+    border: 1px solid #333333;
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="title_bar" native="true">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1280</width>
-      <height>80</height>
-     </rect>
+   <layout class="QVBoxLayout" name="main_layout">
+    <property name="spacing">
+     <number>10</number>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #1e1e1e;</string>
+    <property name="leftMargin">
+     <number>10</number>
     </property>
-    <widget class="QFrame" name="logo_frame">
-     <property name="geometry">
-      <rect>
-       <x>15</x>
-       <y>10</y>
-       <width>60</width>
-       <height>60</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: #e53935; border-radius: 30px;</string>
-     </property>
-     <widget class="QLabel" name="lbl_logo">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>60</width>
-        <height>60</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>28</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: white; background: transparent;</string>
-      </property>
-      <property name="text">
-       <string>i</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QLabel" name="lbl_title">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>8</y>
-       <width>600</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>20</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: #e53935; background: transparent;</string>
-     </property>
-     <property name="text">
-      <string>HỆ THỐNG KIỂM TRA CHẤT LƯỢNG MẠCH IN</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="lbl_subtitle">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>48</y>
-       <width>500</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>11</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: #aaaaaa; background: transparent;</string>
-     </property>
-     <property name="text">
-      <string>QC_PCB INSPECTION SYSTEM</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="lbl_university">
-     <property name="geometry">
-      <rect>
-       <x>850</x>
-       <y>10</y>
-       <width>400</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: #e53935; background: transparent;</string>
-     </property>
-     <property name="text">
-      <string>ĐẠI HỌC PHENIKAA</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="lbl_faculty">
-     <property name="geometry">
-      <rect>
-       <x>850</x>
-       <y>38</y>
-       <width>400</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>11</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: #aaaaaa; background: transparent;</string>
-     </property>
-     <property name="text">
-      <string>TRƯỜNG KỸ THUẬT - KHOA CƠ ĐIỆN TỬ</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="lbl_clock">
-     <property name="geometry">
-      <rect>
-       <x>1050</x>
-       <y>58</y>
-       <width>200</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>9</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: #888888; background: transparent;</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="INSPECTOR">
-    <property name="geometry">
-     <rect>
-      <x>15</x>
-      <y>95</y>
-      <width>820</width>
-      <height>690</height>
-     </rect>
+    <property name="topMargin">
+     <number>10</number>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
+    <property name="rightMargin">
+     <number>10</number>
     </property>
-    <property name="title">
-     <string/>
+    <property name="bottomMargin">
+     <number>10</number>
     </property>
-    <widget class="QFrame" name="CAM_VIEW">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>820</width>
-       <height>600</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: 3px solid #00e676; background-color: #000000;</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <widget class="QLabel" name="lbl_monitor">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>5</y>
-        <width>810</width>
-        <height>590</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background: transparent;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QPushButton" name="btn_start">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>615</y>
-       <width>265</width>
-       <height>60</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>265</width>
-       <height>60</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton { background-color: #00c853; color: white; border-radius: 4px; } QPushButton:hover { background-color: #00e676; }</string>
-     </property>
-     <property name="text">
-      <string>START PROCESS</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_reset">
-     <property name="geometry">
-      <rect>
-       <x>277</x>
-       <y>615</y>
-       <width>266</width>
-       <height>60</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>266</width>
-       <height>60</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton { background-color: #fdd835; color: #333; border-radius: 4px; } QPushButton:hover { background-color: #ffeb3b; }</string>
-     </property>
-     <property name="text">
-      <string>RESET</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_stop">
-     <property name="geometry">
-      <rect>
-       <x>555</x>
-       <y>615</y>
-       <width>265</width>
-       <height>60</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>265</width>
-       <height>60</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton { background-color: #e53935; color: white; border-radius: 4px; } QPushButton:hover { background-color: #ff5252; }</string>
-     </property>
-     <property name="text">
-      <string>EMERGENCY STOP</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="right_panel" native="true">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>95</y>
-      <width>415</width>
-      <height>690</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <widget class="QGroupBox" name="tracking_log_group">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>415</width>
-       <height>400</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background: transparent;</string>
-     </property>
-     <property name="title">
-      <string/>
-     </property>
-     <widget class="QLabel" name="lbl_tracking_title">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>415</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #e53935; background: transparent;</string>
-      </property>
-      <property name="text">
-       <string>ERROR TRACKING LOG</string>
-      </property>
-     </widget>
-     <widget class="QTableWidget" name="table_tracking_log">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>32</y>
-        <width>415</width>
-        <height>330</height>
-       </rect>
-      </property>
-      <property name="alternatingRowColors">
-       <bool>true</bool>
-      </property>
-      <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectItems</enum>
-      </property>
-      <property name="columnCount">
-       <number>5</number>
-      </property>
-      <column>
-       <property name="text">
-        <string>Defect ID</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Error Type</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Component</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Location</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Time</string>
-       </property>
-      </column>
-     </widget>
-     <widget class="QPushButton" name="btn_add_log">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>368</y>
-        <width>85</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton { background-color: #00c853; color: white; border-radius: 3px; } QPushButton:hover { background-color: #00e676; }</string>
-      </property>
-      <property name="text">
-       <string>Add</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btn_delete_log">
-      <property name="geometry">
-       <rect>
-        <x>325</x>
-        <y>368</y>
-        <width>85</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton { background-color: #e53935; color: white; border-radius: 3px; } QPushButton:hover { background-color: #ff5252; }</string>
-      </property>
-      <property name="text">
-       <string>Delete</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QGroupBox" name="counter_group">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>410</y>
-       <width>415</width>
-       <height>280</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background: transparent;</string>
-     </property>
-     <property name="title">
-      <string/>
-     </property>
-     <widget class="QLabel" name="lbl_counter_title">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>415</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #00e676; background: transparent;</string>
-      </property>
-      <property name="text">
-       <string>COUNTER RESULTS</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lbl_total">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>90</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #00e676; background: transparent;</string>
-      </property>
-      <property name="text">
-       <string>TOTAL</string>
-      </property>
-     </widget>
-     <widget class="QLCDNumber" name="lcd_total_unit">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>70</y>
-        <width>90</width>
-        <height>50</height>
-       </rect>
-      </property>
+    <item>
+     <widget class="QFrame" name="title_bar">
       <property name="minimumSize">
        <size>
-        <width>90</width>
-        <height>50</height>
+        <width>0</width>
+        <height>80</height>
        </size>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QLCDNumber { color: #00e676; background-color: #1a1a2e; border: 2px solid #00e676; }</string>
-      </property>
-      <property name="digitCount">
-       <number>6</number>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lbl_ok_count">
-      <property name="geometry">
-       <rect>
-        <x>115</x>
-        <y>40</y>
-        <width>90</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #00e676; background: transparent;</string>
-      </property>
-      <property name="text">
-       <string>PASS</string>
-      </property>
-     </widget>
-     <widget class="QLCDNumber" name="lcd_pass">
-      <property name="geometry">
-       <rect>
-        <x>115</x>
-        <y>70</y>
-        <width>90</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
+      <property name="maximumSize">
        <size>
-        <width>90</width>
-        <height>50</height>
+        <width>16777215</width>
+        <height>80</height>
        </size>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QLCDNumber { color: #00e676; background-color: #1a1a2e; border: 2px solid #00e676; }</string>
-      </property>
-      <property name="digitCount">
-       <number>6</number>
-      </property>
+      <layout class="QHBoxLayout" name="title_layout">
+       <item>
+        <widget class="QFrame" name="logo_frame">
+         <property name="minimumSize">
+          <size>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #E53935; border-radius: 8px;</string>
+         </property>
+         <layout class="QVBoxLayout" name="logo_layout">
+          <item>
+           <widget class="QLabel" name="lbl_logo">
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>26</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: white; background: transparent;</string>
+            </property>
+            <property name="text">
+             <string>i</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="titles_layout">
+         <property name="spacing">
+          <number>2</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="lbl_title">
+           <property name="font">
+            <font>
+             <family>Segoe UI</family>
+             <pointsize>18</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #E53935;</string>
+           </property>
+           <property name="text">
+            <string>HỆ THỐNG KIỂM TRA CHẤT LƯỢNG MẠCH</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="lbl_subtitle">
+           <property name="font">
+            <font>
+             <family>Segoe UI</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #AAAAAA;</string>
+           </property>
+           <property name="text">
+            <string>QC_PCB INSPECTION SYSTEM</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_nav_inspection">
+         <property name="minimumSize">
+          <size>
+           <width>140</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>Theo dõi</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_nav_settings">
+         <property name="minimumSize">
+          <size>
+           <width>140</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>CÀI ĐẶT CAMERA</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="uni_layout">
+         <property name="spacing">
+          <number>2</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="lbl_university">
+           <property name="font">
+            <font>
+             <family>Segoe UI</family>
+             <pointsize>11</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #E53935;</string>
+           </property>
+           <property name="text">
+            <string>ĐẠI HỌC PHENIKAA</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="lbl_faculty">
+           <property name="font">
+            <font>
+             <family>Segoe UI</family>
+             <pointsize>10</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #AAAAAA;</string>
+           </property>
+           <property name="text">
+            <string>TRƯỜNG KỸ THUẬT - KHOA CƠ ĐIỆN TỬ</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="lbl_clock">
+           <property name="font">
+            <font>
+             <family>Segoe UI</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #888888;</string>
+           </property>
+           <property name="text">
+            <string>16:29:30 - 05/05/2026</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLabel" name="lbl_ng_count">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>40</y>
-        <width>90</width>
-        <height>25</height>
-       </rect>
+    </item>
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>0</number>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #e53935; background: transparent;</string>
-      </property>
-      <property name="text">
-       <string>NG</string>
-      </property>
+      <widget class="QWidget" name="page_inspection">
+       <layout class="QHBoxLayout" name="page1_layout">
+        <property name="margin" stdset="0">
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="inspect_left_layout">
+          <property name="spacing">
+           <number>15</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="CAM_VIEW">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border: 3px solid #00E676; background-color: #050505;</string>
+            </property>
+            <layout class="QVBoxLayout" name="cam_view_layout">
+             <item>
+              <widget class="QLabel" name="lbl_monitor_inspect">
+               <property name="styleSheet">
+                <string notr="true">border: none; background: transparent; color: #555555; font-size: 24px; font-weight: bold;</string>
+               </property>
+               <property name="text">
+                <string>NO CAMERA SIGNAL</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="actions_layout">
+            <property name="spacing">
+             <number>15</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="btn_start">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>65</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string>START PROCESS</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_reset">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>65</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string>RESET</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_stop">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>65</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string>EMERGENCY STOP</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="inspect_right_layout">
+          <property name="spacing">
+           <number>15</number>
+          </property>
+          <item>
+           <widget class="QGroupBox" name="tracking_log_group">
+            <property name="maximumSize">
+             <size>
+              <width>480</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QGroupBox::title { color: #E53935; }</string>
+            </property>
+            <property name="title">
+             <string>ERROR TRACKING LOG</string>
+            </property>
+            <layout class="QVBoxLayout" name="log_layout">
+             <item>
+              <widget class="QTableWidget" name="table_tracking_log">
+               <property name="alternatingRowColors">
+                <bool>true</bool>
+               </property>
+               <property name="selectionBehavior">
+                <enum>QAbstractItemView::SelectRows</enum>
+               </property>
+               <property name="columnCount">
+                <number>4</number>
+               </property>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <column>
+                <property name="text">
+                 <string>Defect ID</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Error Type</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Component</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Location</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="log_btn_layout">
+               <item>
+                <spacer>
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btn_add_log">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Add</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btn_delete_log">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Delete</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="counter_group">
+            <property name="maximumSize">
+             <size>
+              <width>480</width>
+              <height>300</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>COUNTER RESULTS</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="lbl_total">
+               <property name="styleSheet">
+                <string>color:#00E676;font-weight:bold;</string>
+               </property>
+               <property name="text">
+                <string>TOTAL</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="lbl_ok_count">
+               <property name="styleSheet">
+                <string>color:#00E676;font-weight:bold;</string>
+               </property>
+               <property name="text">
+                <string>PASS</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLabel" name="lbl_ng_count">
+               <property name="styleSheet">
+                <string>color:#E53935;font-weight:bold;</string>
+               </property>
+               <property name="text">
+                <string>NG</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="lbl_yield">
+               <property name="styleSheet">
+                <string>color:#42A5F5;font-weight:bold;</string>
+               </property>
+               <property name="text">
+                <string>YIELD %</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLCDNumber" name="lcd_total_unit">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="digitCount">
+                <number>5</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLCDNumber" name="lcd_pass">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="digitCount">
+                <number>5</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLCDNumber" name="lcd_ng">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string>color: #E53935; border-color: #E53935;</string>
+               </property>
+               <property name="digitCount">
+                <number>5</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QLCDNumber" name="lcd_yield">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string>color: #42A5F5; border-color: #42A5F5;</string>
+               </property>
+               <property name="digitCount">
+                <number>5</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" colspan="2">
+              <layout class="QVBoxLayout" name="elapsed_layout">
+               <item>
+                <widget class="QLabel" name="lbl_eslaped_count">
+                 <property name="styleSheet">
+                  <string>color:#AAAAAA;font-weight:bold;</string>
+                 </property>
+                 <property name="text">
+                  <string>ELAPSED TIME</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLCDNumber" name="lcd_elapsed">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>60</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string>color: #42A5F5; border-color: #42A5F5;</string>
+                 </property>
+                 <property name="digitCount">
+                  <number>8</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="2" column="2" colspan="2">
+              <widget class="QLabel" name="lbl_result">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>80</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>20</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string>background-color: #1A1A2E; color: #888888; border: 2px solid #444444; border-radius: 6px; margin-top:10px;</string>
+               </property>
+               <property name="text">
+                <string>WAITING...</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_settings">
+       <layout class="QVBoxLayout" name="page2_layout">
+        <property name="margin" stdset="0">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QComboBox" name="cb_device_list">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="currentText">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="settings_main_layout">
+          <property name="spacing">
+           <number>15</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="CAM_PREVIEW">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: #050505; border: 1px solid #333333; border-radius: 8px;</string>
+            </property>
+            <layout class="QVBoxLayout" name="preview_layout">
+             <item>
+              <widget class="QLabel" name="lbl_monitor_settings">
+               <property name="styleSheet">
+                <string>color: #555555; font-size: 20px; font-weight: bold; border: none;</string>
+               </property>
+               <property name="text">
+                <string>CAMERA PREVIEW</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_settings_panel">
+            <property name="minimumSize">
+             <size>
+              <width>320</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>320</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <layout class="QVBoxLayout" name="settings_panel_layout">
+             <property name="spacing">
+              <number>8</number>
+             </property>
+             <item>
+              <widget class="QGroupBox" name="grp_init">
+               <property name="title">
+                <string>Initialization</string>
+               </property>
+               <layout class="QVBoxLayout">
+                <item>
+                 <widget class="QPushButton" name="btn_search_dev">
+                  <property name="text">
+                   <string>Search Device</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout">
+                  <item>
+                   <widget class="QPushButton" name="btn_open_dev">
+                    <property name="text">
+                     <string>Open Device</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btn_close_dev">
+                    <property name="text">
+                     <string>Close Device</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="grp_acq">
+               <property name="title">
+                <string>Image Acquisition</string>
+               </property>
+               <layout class="QVBoxLayout">
+                <item>
+                 <layout class="QHBoxLayout">
+                  <item>
+                   <widget class="QRadioButton" name="rad_continuous">
+                    <property name="text">
+                     <string>Continuous</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="rad_trigger">
+                    <property name="text">
+                     <string>Trigger Mode</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout">
+                  <item>
+                   <widget class="QPushButton" name="btn_acq_start">
+                    <property name="styleSheet">
+                     <string>background-color:#00C853; font-weight:bold;</string>
+                    </property>
+                    <property name="text">
+                     <string>Start</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btn_acq_stop">
+                    <property name="styleSheet">
+                     <string>background-color:#E53935; font-weight:bold;</string>
+                    </property>
+                    <property name="text">
+                     <string>Stop</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout">
+                  <item>
+                   <widget class="QCheckBox" name="chk_soft_trigger">
+                    <property name="text">
+                     <string>Trigger by Software</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btn_trigger_once">
+                    <property name="text">
+                     <string>Trigger Once</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="grp_storage">
+               <property name="title">
+                <string>Picture Storage</string>
+               </property>
+               <layout class="QGridLayout">
+                <item row="0" column="0">
+                 <widget class="QPushButton" name="btn_save_bmp">
+                  <property name="text">
+                   <string>Save as BMP</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QPushButton" name="btn_save_jpg">
+                  <property name="text">
+                   <string>Save as JPG</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QPushButton" name="btn_save_tiff">
+                  <property name="text">
+                   <string>Save as TIFF</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QPushButton" name="btn_save_png">
+                  <property name="text">
+                   <string>Save as PNG</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="grp_params">
+               <property name="title">
+                <string>Parameters</string>
+               </property>
+               <layout class="QFormLayout">
+                <property name="horizontalSpacing">
+                 <number>15</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="lbl_exp">
+                  <property name="text">
+                   <string>Exposure Time</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="txt_exposure">
+                  <property name="text">
+                   <string>800</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="lbl_gain">
+                  <property name="text">
+                   <string>Gain</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLineEdit" name="txt_gain">
+                  <property name="text">
+                   <string>0</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="lbl_fps">
+                  <property name="text">
+                   <string>Frame Rate</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="txt_fps">
+                  <property name="text">
+                   <string>10</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="lbl_fmt">
+                  <property name="text">
+                   <string>Pixel Format</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QComboBox" name="cb_pixel_fmt">
+                  <item>
+                   <property name="text">
+                    <string>BGR8Packed</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Mono8</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QPushButton" name="btn_get_param">
+                  <property name="text">
+                   <string>Get Parameter</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1">
+                 <widget class="QPushButton" name="btn_set_param">
+                  <property name="styleSheet">
+                   <string>border-color:#42A5F5; color:#42A5F5;</string>
+                  </property>
+                  <property name="text">
+                   <string>Set Parameter</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="grp_aux">
+               <property name="title">
+                <string>Auxiliary Line Drawing</string>
+               </property>
+               <layout class="QHBoxLayout">
+                <item>
+                 <widget class="QPushButton" name="btn_draw_circle">
+                  <property name="text">
+                   <string>Draw Circle</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_draw_lines">
+                  <property name="text">
+                   <string>Draw Lines</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
-     <widget class="QLCDNumber" name="lcd_ng">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>70</y>
-        <width>90</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>90</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QLCDNumber { color: #e53935; background-color: #1a1a2e; border: 2px solid #e53935; }</string>
-      </property>
-      <property name="digitCount">
-       <number>6</number>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lbl_yield">
-      <property name="geometry">
-       <rect>
-        <x>325</x>
-        <y>40</y>
-        <width>80</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #42a5f5; background: transparent;</string>
-      </property>
-      <property name="text">
-       <string>YIELD %</string>
-      </property>
-     </widget>
-     <widget class="QLCDNumber" name="lcd_yield">
-      <property name="geometry">
-       <rect>
-        <x>325</x>
-        <y>70</y>
-        <width>80</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>80</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QLCDNumber { color: #42a5f5; background-color: #1a1a2e; border: 2px solid #42a5f5; }</string>
-      </property>
-      <property name="digitCount">
-       <number>5</number>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lbl_eslaped_count">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>140</y>
-        <width>180</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #aaaaaa; background: transparent;</string>
-      </property>
-      <property name="text">
-       <string>ELAPSED TIME</string>
-      </property>
-     </widget>
-     <widget class="QLCDNumber" name="lcd_elapsed">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>170</y>
-        <width>180</width>
-        <height>55</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>180</width>
-        <height>55</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QLCDNumber { color: #42a5f5; background-color: #1a1a2e; border: 2px solid #42a5f5; }</string>
-      </property>
-      <property name="digitCount">
-       <number>8</number>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lbl_result">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>140</y>
-        <width>195</width>
-        <height>85</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>22</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #888888; background-color: #1a1a2e; border: 2px solid #444; border-radius: 6px;</string>
-      </property>
-      <property name="text">
-       <string>WAITING...</string>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="list_tracking_log">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>235</y>
-        <width>415</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="visible">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </widget>
-   </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
